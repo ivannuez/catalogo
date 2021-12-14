@@ -46,7 +46,7 @@
             <div class="container" style="margin-top: 1rem">
                 <div class="product"> 
                     <div class="product-img">
-                        <img src="resource/img/blue.jpg" alt="green apple slice">
+                        <img src="<%= prod.getImagen() %>" alt="green apple slice">
                     </div>
                     <div class="product-title item-title"><%= prod.getNombre()%></div>
                     <spam class="product-code item-code">COD: <%= prod.getIdProducto()%></spam>

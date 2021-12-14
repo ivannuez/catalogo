@@ -8,6 +8,7 @@ package com.py.catalogo.facade;
 import com.py.catalogo.connection.Conexion;
 import com.py.catalogo.entity.Acorde;
 import com.py.catalogo.entity.Producto;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,6 +51,7 @@ public class Facade {
                 data.setNombre(rs.getString("artnom").trim());
                 data.setDescripcion(rs.getString("artdescl").trim());
                 data.setPrecio(rs.getInt("artprevent"));
+                data.setImagen("/catalogo/imageController?id="+ String.valueOf(data.getIdProducto()));
                 resultado.add(data);
             }
             rs.close();
@@ -99,6 +101,7 @@ public class Facade {
                     resultado.setNombre(rs.getString("artnom").trim());
                     resultado.setDescripcion(rs.getString("artdescl").trim());
                     resultado.setPrecio(rs.getInt("artprevent"));
+                    resultado.setImagen("/catalogo/imageController?id="+ String.valueOf(resultado.getIdProducto()));
                     Acorde ac = new Acorde(rs.getInt("codacorde"), rs.getString("acordesc").trim());
                     resultado.getAcordes().add(ac);
                 } else {
@@ -108,6 +111,44 @@ public class Facade {
             }
             rs.close();
             con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Facade.class.getName()).log(Level.SEVERE, null, ex);
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex1) {
+                    Logger.getLogger(Facade.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+            }
+        } catch (Exception x) {
+            x.printStackTrace();
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex1) {
+                    Logger.getLogger(Facade.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+            }
+        }
+        return resultado;
+    }
+    
+     public static InputStream productoImagen(int id) {
+        Connection con = null;
+        InputStream resultado = null;
+        try {
+            con = Conexion.connect();
+            ResultSet rs = null;
+            String selectSQL = "select a.artimagen from articulos a where CAST(a.artcodigo AS DECIMAL ) = " + id;
+            PreparedStatement ps = con.prepareStatement(selectSQL);
+            System.out.println(selectSQL);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                resultado = rs.getBinaryStream(1);
+            }
+            rs.close();
+            con.close();
+            
         } catch (SQLException ex) {
             Logger.getLogger(Facade.class.getName()).log(Level.SEVERE, null, ex);
             if (con != null) {

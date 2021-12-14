@@ -105,7 +105,7 @@ function cargarDatos() {
             var html = `<div class="item">
                     <div class="item-content">
                         <div class="item-img">
-                            <img src="resource/img/blue.jpg" alt="green apple slice">
+                            <img src="${valor.imagen}" alt="green apple slice">
                         </div>
                         <div class="item-detail">
                             <div class="item-title">${valor.nombre}</div>
