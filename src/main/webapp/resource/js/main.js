@@ -104,22 +104,20 @@ function cargarDatos() {
             //console.log(valor);
             var html = `<div class="item">
                     <div class="item-content">
-                        <div class="item-img">
-                            <img src="${valor.imagen}" alt="green apple slice">
-                        </div>
+                        <img  class="item-img" src="${valor.imagen}" alt="green apple slice">
                         <div class="item-detail">
                             <div class="item-title">${valor.nombre}</div>
                             <spam class="item-code">COD: ${valor.idProducto}</spam>
                             <div class="descripcion">
-                                <div>${valor.descripcion}</div>
+                                ${valor.descripcion}
                             </div>
-                            <div class="item-footer">
+                        </div>
+                        <div class="item-footer">
                                 <div class="item-price"> 
                                     Gs. <span>${valor.precio}</span>    
                                 </div>
-                                <button class="view-btn"><a href="producto.jsp?id=${valor.idProducto}">Ver Detalles</a></button>
-                            </div>
-                        </div>
+                                <button class="view-btn"><a href="producto.jsp?id=${valor.idProducto}">Detalles</a></button>
+                         </div>
                     </div>
                 </div>`;
             $("#idGallery").append(html);
