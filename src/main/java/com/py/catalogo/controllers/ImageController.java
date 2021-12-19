@@ -5,17 +5,9 @@
  */
 package com.py.catalogo.controllers;
 
-import com.py.catalogo.connection.Conexion;
 import com.py.catalogo.facade.Facade;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

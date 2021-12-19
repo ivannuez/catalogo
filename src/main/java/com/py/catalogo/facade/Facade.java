@@ -92,7 +92,7 @@ public class Facade {
                     + "where CAST(a.artcodigo AS DECIMAL ) = " + id + " "
                     + "order by a.artcodigo desc";
             PreparedStatement ps = con.prepareStatement(selectSQL);
-            System.out.println(selectSQL);
+            //System.out.println(selectSQL);
             rs = ps.executeQuery();
             while (rs.next()) {
                 if (resultado == null) {
@@ -141,7 +141,7 @@ public class Facade {
             ResultSet rs = null;
             String selectSQL = "select a.artimagen from articulos a where CAST(a.artcodigo AS DECIMAL ) = " + id;
             PreparedStatement ps = con.prepareStatement(selectSQL);
-            System.out.println(selectSQL);
+            //System.out.println(selectSQL);
             rs = ps.executeQuery();
             while (rs.next()) {
                 resultado = rs.getBinaryStream(1);
@@ -178,7 +178,7 @@ public class Facade {
             con = Conexion.connect();
             ResultSet rs = null;
             String selectSQL = "select * from acordes";
-            System.out.println(selectSQL);
+            //System.out.println(selectSQL);
             PreparedStatement ps = con.prepareStatement(selectSQL);
             rs = ps.executeQuery();
             while (rs.next()) {

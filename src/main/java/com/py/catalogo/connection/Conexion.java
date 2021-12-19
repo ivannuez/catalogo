@@ -5,8 +5,10 @@
  */
 package com.py.catalogo.connection;
 
+import com.py.catalogo.services.PropertiesServices;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  *
@@ -18,10 +20,11 @@ public class Conexion {
      * Obtiene una conexion del DataSource.
      */
     public static java.sql.Connection connect() {
+        Properties prop = PropertiesServices.getInstance().getProperties();
         java.sql.Connection conn = null;
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/catalogo", "postgres", "postgres");
+            conn = DriverManager.getConnection(prop.getProperty("db.url"),prop.getProperty("db.user"),prop.getProperty("db.pass"));
             conn.setAutoCommit(true);
         } catch (SQLException Se) {
             System.out.println("Error de SQL. " + Se);
