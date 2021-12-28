@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>My Perfume</title>
-        <meta name="theme-color" content="#FCBBCF" />
+        <meta name="theme-color" content="#e789a6" />
         <link rel="icon" href="resource/icons/favicon.ico">
         <link href="resource/css/animate.min.css" rel="stylesheet" type="text/css"/>
         <link  href="resource/css/all.min.css" rel="stylesheet">
@@ -41,9 +41,13 @@
                             </div>
                         </div>
                     </div>
-                    <div id="filter-popap" class="card">
+                    <div id="filter-popap" class="card hidden">
+                        <p>Fragancias</p>
+                        <div id="sexo-items">
+                            <div><input id="f" class="chk-sexo" type="checkbox" />Para Mujeres</div>
+                            <div><input id="m" class="chk-sexo" type="checkbox" />Para Hombres</div>
+                        </div>
                         <p>Acordes</p>
-                        <hr></hr>
                         <div id="acordes-items">
                             <%
                                 List<Acorde> acordes = Facade.acordes();
@@ -61,7 +65,10 @@
             </div>
             <div id="idGallery" class="content gallery ">
             </div>
-            <div class="footer"></div>
+            <div class="footer">
+                <img src="resource/img/left_logo.png" alt="green apple slice">
+                <img src="resource/img/right_logo.png" alt="green apple slice">    
+            </div>
         </div>
         <script src="resource/js/main.js" type="text/javascript"></script>
     </body>

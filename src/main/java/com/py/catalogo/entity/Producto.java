@@ -20,16 +20,18 @@ public class Producto {
     private String imagen;
     private int precio;
     private List<Acorde> acordes = new ArrayList<>();
+    private String sexo;
 
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombre, String descripcion, String imagen, int precio) {
+    public Producto(int idProducto, String nombre, String descripcion, String imagen, int precio, String sexo) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.precio = precio;
+        this.sexo =  sexo;
     }
 
     /**
@@ -114,6 +116,20 @@ public class Producto {
      */
     public void setAcordes(List<Acorde> acordes) {
         this.acordes = acordes;
+    }
+
+    /**
+     * @return the sexo
+     */
+    public String getSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
 }

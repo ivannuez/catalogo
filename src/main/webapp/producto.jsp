@@ -25,7 +25,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>My Perfume</title>
-        <meta name="theme-color" content="#FCBBCF" />
+        <meta name="theme-color" content="#e789a6" />
         <link rel="icon" href="resource/icons/favicon.ico">
         <link href="resource/css/animate.min.css" rel="stylesheet" type="text/css"/>
         <link href="resource/css/main.css" rel="stylesheet" type="text/css"/>
@@ -44,7 +44,7 @@
                 <img src="resource/img/right_logo.png" alt="green apple slice">
             </div>
             <div class="container" style="margin-top: 1rem">
-                <div class="product"> 
+                <div class="product animate__animated animate__fadeIn"> 
                     <div class="product-img">
                         <img src="<%= prod.getImagen() %>" alt="green apple slice">
                     </div>
@@ -64,7 +64,7 @@
 
                         </div>
                         <div class="item-footer">
-                            <div class="item-price"> 
+                            <div class="item-price not-visible"> 
                                 Gs. <span><%= prod.getPrecio()%></span>    
                             </div>
                         </div>
@@ -107,7 +107,10 @@
                                         </div>-->
                 </div>
             </div>
-            <div class="footer"></div>
+            <div class="footer">
+                <img src="resource/img/left_logo.png" alt="green apple slice">
+                <img src="resource/img/right_logo.png" alt="green apple slice">    
+            </div>
         </div>
         <script src="resource/js/main.js" type="text/javascript"></script>
     </body>

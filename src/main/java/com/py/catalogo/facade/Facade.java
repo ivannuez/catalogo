@@ -24,8 +24,8 @@ import java.util.logging.Logger;
  */
 public class Facade {
 
-    public static List<Producto> productos(String nombre, String acordes) {
-        String selectSQL = "select a.artcodigo,a.artnom,a.artdescl,a.artprevent, a.artimagen from articulos a "
+    public static List<Producto> productos(String nombre, String acordes, String sexo) {
+        String selectSQL = "select a.artcodigo,a.artnom,a.artdescl,a.artprevent, a.artimagen, a.sexo from articulos a "
                 + "inner join articulos2 b "
                 + "on (a.artcodigo = b.artcodigo) "
                 + "inner join acordes c "
@@ -36,7 +36,10 @@ public class Facade {
         if (!acordes.isEmpty()) {
             selectSQL += " and b.codacorde in(" + acordes + ")";
         }
-        selectSQL += " group by a.artcodigo,a.artnom,a.artdescl,a.artprevent, a.artimagen order by a.artcodigo desc";
+        if (!sexo.isEmpty()) {
+            selectSQL += " and a.sexo in(" + sexo + ")";
+        }
+        selectSQL += " group by a.artcodigo,a.artnom,a.artdescl,a.artprevent, a.artimagen, a.sexo order by a.artcodigo desc";
         System.out.println(selectSQL);
         List<Producto> resultado = new ArrayList<Producto>();
         Connection con = null;
@@ -51,7 +54,8 @@ public class Facade {
                 data.setNombre(rs.getString("artnom").trim());
                 data.setDescripcion(rs.getString("artdescl").trim());
                 data.setPrecio(rs.getInt("artprevent"));
-                data.setImagen("/catalogo/imageController?id="+ String.valueOf(data.getIdProducto()));
+                data.setImagen("/catalogo/imageController?id=" + String.valueOf(data.getIdProducto()));
+                data.setSexo(rs.getString("sexo"));
                 resultado.add(data);
             }
             rs.close();
@@ -84,7 +88,7 @@ public class Facade {
         try {
             con = Conexion.connect();
             ResultSet rs = null;
-            String selectSQL = "select a.artcodigo,a.artnom,a.artdescl,a.artprevent,b.codacorde,c.acordesc, a.artimagen from articulos a "
+            String selectSQL = "select a.artcodigo,a.artnom,a.artdescl,a.artprevent,b.codacorde,c.acordesc, a.artimagen, a.sexo from articulos a "
                     + "inner join articulos2 b "
                     + "on (a.artcodigo = b.artcodigo) "
                     + "inner join acordes c "
@@ -101,7 +105,8 @@ public class Facade {
                     resultado.setNombre(rs.getString("artnom").trim());
                     resultado.setDescripcion(rs.getString("artdescl").trim());
                     resultado.setPrecio(rs.getInt("artprevent"));
-                    resultado.setImagen("/catalogo/imageController?id="+ String.valueOf(resultado.getIdProducto()));
+                    resultado.setSexo(rs.getString("sexo"));
+                    resultado.setImagen("/catalogo/imageController?id=" + String.valueOf(resultado.getIdProducto()));
                     Acorde ac = new Acorde(rs.getInt("codacorde"), rs.getString("acordesc").trim());
                     resultado.getAcordes().add(ac);
                 } else {
@@ -132,8 +137,8 @@ public class Facade {
         }
         return resultado;
     }
-    
-     public static InputStream productoImagen(int id) {
+
+    public static InputStream productoImagen(int id) {
         Connection con = null;
         InputStream resultado = null;
         try {
@@ -148,7 +153,7 @@ public class Facade {
             }
             rs.close();
             con.close();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Facade.class.getName()).log(Level.SEVERE, null, ex);
             if (con != null) {

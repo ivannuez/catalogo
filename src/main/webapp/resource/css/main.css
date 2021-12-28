@@ -8,6 +8,16 @@ and open the template in the editor.
     Author     : Usuario
 */
 
+input,
+textarea,
+button,
+select,
+a {
+  outline: none;-webkit-tap-highlight-color: transparent;
+}
+
+
+
 a{
     color: white;
     text-decoration-line: none
@@ -37,7 +47,7 @@ body {
     justify-content: space-between;
     height: 7.5rem;
     padding: 0rem;
-    border-bottom: 2rem solid  #FCBBCF;
+    border-bottom: 2rem solid  #e789a6;
 }
 
 .header .buscador{
@@ -93,13 +103,14 @@ body {
 
 .form-button{
     display: flex;
-    background-color: #FCBBCF;
+    background-color: #e789a6;
     border-radius: 0px 12px 12px 0px;
-    border: 1px solid #FCBBCF;
+    border: 1px solid #e789a6;
     cursor: pointer;
     /* align-content: center; */
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .form-text-button{
@@ -124,18 +135,18 @@ body {
 
 
 .item{
-     overflow: hidden; 
-     display: grid; 
+    overflow: hidden; 
+    display: grid; 
     box-shadow: 4px 4px 25px -2px rgba(0, 0, 0, 0.3);
 }
 
 
 .item > .item-content{
-     overflow: hidden; 
-     display: grid; 
-     grid-template-areas: "item-img"
-                            "item-detail"
-                            "item-footer";
+    overflow: hidden; 
+    display: grid; 
+    grid-template-areas: "item-img"
+        "item-detail"
+        "item-footer";
     border-radius: 17px;
     box-shadow: 4px 4px 25px -2px rgba(0, 0, 0, 0.3);
 }
@@ -238,7 +249,6 @@ body {
 }
 
 #filter-popap{
-    display: none;
     border: 1px solid #e789a6;
     z-index: 2;
     margin: 0% 5%;
@@ -251,9 +261,10 @@ body {
 #filter-popap p{
     margin: 0px;
     padding: 0.5rem 0px 0px 0.5rem;
-    color: black;
+    color: #C16883;
     font-size: 1.2em;
     font-weight: 900;
+    padding-bottom: 0.25rem;
 }
 
 #filter-popap .form-text-button{
@@ -265,17 +276,23 @@ body {
     display: initial;
     margin-top: 0rem;
     margin-bottom: 0.8rem;
+    font-weight: 500;
 }
 #filter-popap #acordes-items{
-    /* display: flex; */
-    /* flex-wrap: wrap; */
     display: grid;
-    /* gap: 2.5rem; */
-    /* grid-auto-rows: 30rem; */
     grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
 }
 
 #filter-popap #acordes-items > div{
+    margin: 0rem 0.8rem 1rem;
+}
+
+#filter-popap #sexo-items{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+}
+
+#filter-popap #sexo-items > div{
     margin: 0rem 0.8rem 1rem;
 }
 
@@ -289,7 +306,6 @@ body {
 .product{
     display: grid;
     grid-column-gap: 2rem;
-    margin-bottom: 5rem;
 }
 
 .product-img{
@@ -364,8 +380,12 @@ body {
 .hidden{
     display: none;
 }
+
+.not-visible{
+    visibility: hidden;
+}
 .show{
-    display: initial;
+    display: block;
 }
 
 .product-acordes-title{
@@ -386,54 +406,83 @@ body {
     margin-right: 0.5rem
 }
 
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 7.5rem;
+    padding: 0rem;
+}
+
+.no_item{
+    width: 200%;
+    text-align: center;
+}
+
 @media (max-width: 768px) {
-    
-     .gallery {
+
+    button:hover, button:focus {
+        outline: none;
+    }
+
+    .gallery {
         gap: 0.75rem;
         grid-template-columns: repeat(auto-fill, minmax(10rem, 0.5fr));
     }
-    
+
     .item-title {
         font-size: 0.8em;
     }
-    
+
     .item-code {
         font-size: 0.6em;
     }
-    
+
     .item-detail .descripcion{
         font-size: 0.8em;
     }
-    
+
     .item-footer > .item-price{
         font-size: 1em;
     }
-    
+
     .item-footer > .view-btn {
-      align-self: flex-end;
-      margin-top: 0.5rem;
-      float: right;
-      padding: 0.6em 0.9em;
-      border: none;
-      border-radius: 15px 0px 0px;
-      font-size: 0.8em;
-      font-weight: 500;
-      letter-spacing: 1px;
+        align-self: flex-end;
+        margin-top: 0.5rem;
+        float: right;
+        padding: 0.6em 0.9em;
+        border: none;
+        border-radius: 15px 0px 0px;
+        font-size: 0.8em;
+        font-weight: 500;
+        letter-spacing: 1px;
     }
 
     .header{
-        border-bottom: 1rem solid  #FCBBCF;
+        border-bottom: 1rem solid #e789a6;
     }
-    
+
     #filter-popap #acordes-items {
-          display: grid;
-          grid-gap: 0.5rem;
-          grid-template-columns: repeat(auto-fill, minmax(6rem, 0.5fr));
-          font-size: 0.75em;
-     }
-    
+        display: grid;
+        grid-gap: 0.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(6rem, 0.5fr));
+        font-size: 0.75em;
+    }
+
     #filter-popap #acordes-items > div {
-      margin: 0rem 0.2rem 0rem;
+        margin: 0rem 0.2rem 0rem;
+    }
+
+    #filter-popap #sexo-items {
+        display: grid;
+        grid-gap: 0.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(6rem, 0.5fr));
+        font-size: 0.75em;
+        margin-bottom: 0.5rem;
+    }
+
+    #filter-popap #sexo-items > div {
+        margin: 0rem 0.2rem 0rem;
     }
 
     .header .buscador{

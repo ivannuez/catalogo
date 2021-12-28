@@ -8,6 +8,7 @@ package com.py.catalogo.controllers;
 import com.google.gson.Gson;
 import com.py.catalogo.entity.Producto;
 import com.py.catalogo.facade.Facade;
+import com.py.catalogo.utils.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -42,22 +43,26 @@ public class ProductoController extends HttpServlet {
             Gson json = new Gson();
             switch (operacion) {
                 case "all": {
-                    List<Producto> list = Facade.productos("", "");
+                    List<Producto> list = Facade.productos("", "","");
                     out.println(json.toJson(list));
                     break;
                 }
                 case "search": {
                     String nombre = request.getParameter("nombre");
                     String acordes = request.getParameter("acordes");
-                    if (nombre != null || acordes != null) {
+                    String sexo = request.getParameter("sexo");
+                    if (nombre != null || acordes != null || sexo != null) {
                         if (nombre == null) {
                             nombre = "";
                         }
                         if (acordes == null) {
                           acordes = "";
                         }
+                        if (sexo == null) {
+                          sexo = "";
+                        }
                     }
-                    List<Producto> list = Facade.productos(nombre, acordes.replaceAll(",$", ""));
+                    List<Producto> list = Facade.productos(nombre, Utils.removeLastComa(acordes),Utils.listStringInSql(sexo));
                     out.println(json.toJson(list));
                     break;
                 }
